@@ -1,6 +1,6 @@
 # Raghav Vasappanavara - Portfolio Website
 
-Welcome to my personal portfolio website! This site showcases my work, skills, and experience as a Data Scientist and Machine Learning Engineer.
+Welcome to my personal portfolio website!
 
 ## 🌐 Live Site
 
