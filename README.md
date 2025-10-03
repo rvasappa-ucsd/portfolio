@@ -66,7 +66,3 @@ portfolio/
 ## 📝 License
 
 © 2025 Raghav Vasappanavara. All rights reserved.
-
----
-
-**Note**: Remember to add your own profile photo to the `images` folder and name it `profile.jpg` for the site to display correctly.
