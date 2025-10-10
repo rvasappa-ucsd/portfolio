@@ -1,3 +1,9 @@
+/* ===== CSS Variables (Lab Step 2.4) ===== */
+:root {
+    --color-accent: oklch(65% 50% 280);
+    --nav-border-color: oklch(80% 3% 200);
+}
+
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -5,18 +11,33 @@
     box-sizing: border-box;
 }
 
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+    accent-color: var(--color-accent);
+}
+
 body {
     font: 100%/1.5 system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     color: #333;
     background-color: #f8f9fa;
+    
+    /* Lab Step 1: Prevent content from getting too wide */
+    max-width: 100ch;
+    margin-inline: max(1em, (100% - 100ch) / 2);
 }
 
-/* Smooth Scrolling */
-html {
-    scroll-behavior: smooth;
+/* Lab Step 4.4: Heading Typography */
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.1;
+    text-wrap: balance;
 }
 
-/* Navigation */
+h1 {
+    font-size: 400%;
+}
+
+/* Navigation (Lab Step 2) */
 nav {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     padding: 1rem 0;
@@ -24,6 +45,10 @@ nav {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    
+    /* Lab Step 2.3: Add bottom border */
+    border-bottom: 1px solid var(--nav-border-color);
+    margin-bottom: 0;
 }
 
 .nav-container {
@@ -48,24 +73,42 @@ nav {
     border-radius: 50%;
 }
 
+/* Lab Step 2.1: Remove list styling */
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 2rem;
+    gap: 0;
+}
+
+.nav-links li {
+    display: contents;
 }
 
 .nav-links a {
+    /* Lab Step 2.2: Equal space distribution */
+    flex: 1;
+    
+    /* Lab Step 2.3: Link styling */
     color: white;
     text-decoration: none;
     font-weight: 500;
-    transition: all 0.3s ease;
+    text-align: center;
     padding: 0.5rem 1rem;
-    border-radius: 5px;
+    transition: all 0.3s ease;
+    border-bottom: 0.4em solid transparent;
+    padding-bottom: calc(0.5rem - 0.4em);
 }
 
-.nav-links a:hover,
+/* Lab Step 2.3: Current page link */
 .nav-links a.active {
-    background: rgba(255,255,255,0.2);
+    border-bottom-color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.1);
+}
+
+/* Lab Step 2.4: Hover styles with accent color */
+.nav-links a:hover {
+    border-bottom-color: var(--color-accent);
+    background: oklch(from var(--color-accent) 95% 5% h);
     transform: translateY(-2px);
 }
 
@@ -492,7 +535,7 @@ section h2 {
     font-weight: 500;
 }
 
-/* Contact Form */
+/* Contact Form (Lab Step 3) */
 .contact-form {
     max-width: 600px;
     margin: 0 auto;
@@ -500,35 +543,47 @@ section h2 {
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    
+    /* Lab Step 3.3: Grid layout */
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1em;
 }
 
+/* Lab Step 3.3: Labels span full width and use subgrid */
 .contact-form label {
-    display: block;
-    margin-bottom: 1.5rem;
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: center;
+    margin-bottom: 0;
 }
 
 .contact-form label span {
-    display: block;
-    margin-bottom: 0.5rem;
     font-weight: 600;
     color: #333;
 }
 
+/* Lab Step 3.1: Integrate typography */
+.contact-form input,
+.contact-form textarea,
+.contact-form button {
+    font: inherit;
+}
+
+/* Lab Step 3.2: Form controls styling */
 .contact-form input,
 .contact-form textarea {
-    width: 100%;
     padding: 0.8rem;
     border: 2px solid #e9ecef;
     border-radius: 5px;
-    font-size: 1rem;
-    font-family: inherit;
     transition: border-color 0.3s ease;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: var(--color-accent);
 }
 
 .contact-form textarea {
@@ -536,7 +591,9 @@ section h2 {
     resize: vertical;
 }
 
+/* Lab Step 3.3: Submit button spans full width */
 .contact-form button {
+    grid-column: 1 / -1;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     padding: 1rem 3rem;
@@ -546,7 +603,6 @@ section h2 {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: 100%;
 }
 
 .contact-form button:hover {
@@ -605,6 +661,14 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    body {
+        margin-inline: 1em;
+    }
+
+    h1 {
+        font-size: 250%;
+    }
+
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
@@ -618,10 +682,19 @@ footer {
         font-size: 1.2rem;
     }
 
-    .nav-links {
+    .nav-container {
+        flex-direction: column;
         gap: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-links a {
+        padding: 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
     }
 
     section h2 {
@@ -646,15 +719,25 @@ footer {
         margin-left: 0.5rem;
         padding: 1.5rem;
     }
+
+    /* Lab Step 3: Form responsive */
+    .contact-form {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form label {
+        grid-template-columns: 1fr;
+        gap: 0.5em;
+    }
 }
 
 @media (max-width: 480px) {
-    .nav-links {
-        gap: 0.5rem;
+    h1 {
+        font-size: 180%;
     }
 
     .nav-links a {
-        padding: 0.5rem;
+        padding: 0.8rem;
         font-size: 0.9rem;
     }
 
@@ -665,4 +748,19 @@ footer {
     .container {
         padding: 0 1rem;
     }
+
+    .profile-placeholder {
+        width: 150px;
+        height: 150px;
+    }
+
+    .profile-placeholder span {
+        font-size: 4rem;
+    }
+}
+
+/* Selection Styling */
+::selection {
+    background: var(--color-accent);
+    color: white;
 }
