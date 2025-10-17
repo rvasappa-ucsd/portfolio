@@ -74,6 +74,14 @@ nav.appendChild(navContainer);
 // Prepend navigation to body
 document.body.prepend(nav);
 
+// Step 4: Dark Mode Implementation
+
+// Step 4.4: Function to set color scheme
+function setColorScheme(colorScheme) {
+  document.documentElement.style.setProperty('color-scheme', colorScheme);
+  console.log('Color scheme set to:', colorScheme);
+}
+
 // Step 4.2: Add dark mode switcher
 document.body.insertAdjacentHTML(
   'afterbegin',
@@ -90,27 +98,28 @@ document.body.insertAdjacentHTML(
 );
 
 // Step 4.4: Make dark mode switcher work
+// Query the select element after it's been added to the DOM
 let select = document.querySelector('.color-scheme select');
 
-function setColorScheme(colorScheme) {
-  document.documentElement.style.setProperty('color-scheme', colorScheme);
-}
+if (select) {
+  // Step 4.5: Load saved preference on page load
+  if ('colorScheme' in localStorage) {
+    let savedScheme = localStorage.colorScheme;
+    setColorScheme(savedScheme);
+    select.value = savedScheme;
+  }
 
-// Step 4.5: Load saved preference
-if ('colorScheme' in localStorage) {
-  let savedScheme = localStorage.colorScheme;
-  setColorScheme(savedScheme);
-  select.value = savedScheme;
+  // Step 4.4: Listen for changes
+  select.addEventListener('input', function (event) {
+    console.log('Color scheme changed to:', event.target.value);
+    setColorScheme(event.target.value);
+    
+    // Step 4.5: Save preference to localStorage
+    localStorage.colorScheme = event.target.value;
+  });
+} else {
+  console.error('Theme select element not found!');
 }
-
-// Step 4.4: Listen for changes
-select.addEventListener('input', function (event) {
-  console.log('color scheme changed to', event.target.value);
-  setColorScheme(event.target.value);
-  
-  // Step 4.5: Save preference
-  localStorage.colorScheme = event.target.value;
-});
 
 // Step 5: Better contact form (Optional)
 let form = document.querySelector('form');
