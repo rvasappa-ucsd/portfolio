@@ -858,26 +858,94 @@ html[style*="color-scheme: light"] .color-scheme select {
     color: #333;
 }
 
-/* Additional dark mode styles for better visibility */
-html[data-theme="dark"],
+/* ===== DARK MODE STYLES ===== */
+/* Apply dark mode when data-theme="dark" is set */
+
+html[data-theme="dark"] {
+    background-color: #0d1117;
+    color: #c9d1d9;
+}
+
 html[data-theme="dark"] body {
-    background-color: #1a1a1a;
-    color: #e0e0e0;
+    background-color: #0d1117;
+    color: #c9d1d9;
 }
 
+/* Hero section */
 html[data-theme="dark"] .hero {
-    background: linear-gradient(135deg, #4a5568 0%, #5a4a6a 100%);
+    background: linear-gradient(135deg, #30363d 0%, #21262d 100%);
 }
 
+html[data-theme="dark"] .hero h1,
+html[data-theme="dark"] .hero p {
+    color: #c9d1d9;
+}
+
+/* Navigation stays the same (purple gradient) */
+
+/* Cards, timeline, and skill categories */
 html[data-theme="dark"] .card,
 html[data-theme="dark"] .timeline-content,
 html[data-theme="dark"] .skill-category {
-    background: #2a2a2a;
-    color: #e0e0e0;
+    background: #161b22;
+    color: #c9d1d9;
+    border-color: #30363d;
 }
 
+/* Section headings */
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4 {
+    color: #c9d1d9;
+}
+
+/* Sections */
 html[data-theme="dark"] section {
-    border-bottom-color: #444;
+    background-color: #0d1117;
+    border-bottom-color: #21262d;
+}
+
+/* Links */
+html[data-theme="dark"] a {
+    color: #58a6ff;
+}
+
+html[data-theme="dark"] a:hover {
+    color: #79c0ff;
+}
+
+/* Timeline */
+html[data-theme="dark"] .timeline::before {
+    background: #30363d;
+}
+
+html[data-theme="dark"] .timeline-item::before {
+    background: #161b22;
+    border-color: #58a6ff;
+}
+
+/* Skills */
+html[data-theme="dark"] .skill-tag {
+    background: #21262d;
+    color: #c9d1d9;
+    border-color: #30363d;
+}
+
+/* Contact cards */
+html[data-theme="dark"] .contact-card {
+    background: #161b22;
+    border-color: #30363d;
+}
+
+html[data-theme="dark"] .contact-card:hover {
+    border-color: #58a6ff;
+    background: #1c2128;
+}
+
+/* Profile placeholder */
+html[data-theme="dark"] .profile-placeholder {
+    background: linear-gradient(135deg, #30363d, #21262d);
+    color: #c9d1d9;
 }
 
 /* Selection Styling */
