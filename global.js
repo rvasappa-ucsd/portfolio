@@ -78,47 +78,68 @@ document.body.prepend(nav);
 
 // Step 4.4: Function to set color scheme
 function setColorScheme(colorScheme) {
-  document.documentElement.style.setProperty('color-scheme', colorScheme);
-  console.log('Color scheme set to:', colorScheme);
+  console.log('setColorScheme called with:', colorScheme);
+  
+  // Set the color-scheme CSS property on the root element
+  document.documentElement.style.colorScheme = colorScheme;
+  
+  // Also add a data attribute for CSS targeting
+  if (colorScheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else if (colorScheme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+  
+  console.log('✓ Color scheme set to:', colorScheme);
+  console.log('✓ data-theme attribute:', document.documentElement.getAttribute('data-theme'));
+  console.log('✓ style.colorScheme:', document.documentElement.style.colorScheme);
 }
 
 // Step 4.2: Add dark mode switcher
 document.body.insertAdjacentHTML(
   'afterbegin',
-  `
-  <label class="color-scheme">
-    Theme:
-    <select>
+  `<label class="color-scheme">
+    🎨 Theme:
+    <select id="theme-select">
       <option value="light dark">Automatic</option>
       <option value="light">Light</option>
       <option value="dark">Dark</option>
     </select>
-  </label>
-`,
+  </label>`
 );
 
 // Step 4.4: Make dark mode switcher work
 // Query the select element after it's been added to the DOM
-let select = document.querySelector('.color-scheme select');
+let select = document.getElementById('theme-select');
 
 if (select) {
+  console.log('✓ Theme select found!');
+  
   // Step 4.5: Load saved preference on page load
   if ('colorScheme' in localStorage) {
     let savedScheme = localStorage.colorScheme;
+    console.log('Loading saved scheme:', savedScheme);
     setColorScheme(savedScheme);
     select.value = savedScheme;
+  } else {
+    // Set default to automatic
+    setColorScheme('light dark');
   }
 
   // Step 4.4: Listen for changes
-  select.addEventListener('input', function (event) {
-    console.log('Color scheme changed to:', event.target.value);
+  select.addEventListener('change', function (event) {
+    console.log('Select changed to:', event.target.value);
     setColorScheme(event.target.value);
     
     // Step 4.5: Save preference to localStorage
     localStorage.colorScheme = event.target.value;
   });
+  
+  console.log('✓ Event listener attached');
 } else {
-  console.error('Theme select element not found!');
+  console.error('✗ Theme select element NOT found!');
 }
 
 // Step 5: Better contact form (Optional)

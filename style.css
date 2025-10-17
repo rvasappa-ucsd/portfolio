@@ -832,26 +832,52 @@ footer {
 }
 
 /* Force styles when color-scheme is explicitly set */
+html[data-theme="dark"] .color-scheme,
 html[style*="color-scheme: dark"] .color-scheme {
     background: rgba(30, 30, 30, 0.95);
     color: white;
     border-color: rgba(102, 126, 234, 0.5);
 }
 
+html[data-theme="dark"] .color-scheme select,
 html[style*="color-scheme: dark"] .color-scheme select {
     background: #2a2a2a;
     color: white;
     border-color: #667eea;
 }
 
+html[data-theme="light"] .color-scheme,
 html[style*="color-scheme: light"] .color-scheme {
     background: rgba(255, 255, 255, 0.95);
     color: #333;
 }
 
+html[data-theme="light"] .color-scheme select,
 html[style*="color-scheme: light"] .color-scheme select {
     background: white;
     color: #333;
+}
+
+/* Additional dark mode styles for better visibility */
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+html[data-theme="dark"] .hero {
+    background: linear-gradient(135deg, #4a5568 0%, #5a4a6a 100%);
+}
+
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .timeline-content,
+html[data-theme="dark"] .skill-category {
+    background: #2a2a2a;
+    color: #e0e0e0;
+}
+
+html[data-theme="dark"] section {
+    border-bottom-color: #444;
 }
 
 /* Selection Styling */
