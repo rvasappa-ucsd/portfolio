@@ -2,6 +2,9 @@
 :root {
     --color-accent: oklch(65% 50% 280);
     --nav-border-color: oklch(80% 3% 200);
+    
+    /* Lab 3 Step 4.1: Dark mode support */
+    color-scheme: light dark;
 }
 
 /* Reset and Base Styles */
@@ -46,8 +49,9 @@ nav {
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     
-    /* Lab Step 2.3: Add bottom border */
-    border-bottom: 1px solid var(--nav-border-color);
+    /* Lab Step 2.3 & Lab 3 Step 4.1: Add bottom border with dark mode support */
+    --border-color: oklch(50% 10% 200 / 40%);
+    border-bottom: 1px solid var(--border-color);
     margin-bottom: 0;
 }
 
@@ -108,7 +112,8 @@ nav {
 /* Lab Step 2.4: Hover styles with accent color */
 .nav-links a:hover {
     border-bottom-color: var(--color-accent);
-    background: oklch(from var(--color-accent) 95% 5% h);
+    /* Lab 3 Step 4.1: Better dark mode support for hover */
+    background: color-mix(in oklch, var(--color-accent), canvas 85%);
     transform: translateY(-2px);
 }
 
@@ -567,7 +572,11 @@ section h2 {
 /* Lab Step 3.1: Integrate typography */
 .contact-form input,
 .contact-form textarea,
-.contact-form button {
+.contact-form button,
+input,
+textarea,
+button,
+select {
     font: inherit;
 }
 
@@ -756,6 +765,43 @@ footer {
 
     .profile-placeholder span {
         font-size: 4rem;
+    }
+}
+
+/* Lab 3 Step 4.3: Color Scheme Switcher */
+.color-scheme {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2000;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+}
+
+.color-scheme select {
+    font: inherit;
+    margin-left: 0.5rem;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: white;
+    cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+    .color-scheme {
+        background: rgba(30, 30, 30, 0.9);
+        color: white;
+    }
+    
+    .color-scheme select {
+        background: #333;
+        color: white;
+        border-color: #555;
     }
 }
 
