@@ -1,11 +1,5 @@
-// Lab 3: Introduction to JS
-
-console.log("IT'S ALIVE!");
-
-// Helper function to get array of elements
-function $$(selector, context = document) {
-  return Array.from(context.querySelectorAll(selector));
-}
+// Portfolio JavaScript - Labs 3 & 4
+// Author: Raghav Vasappanavara
 
 // Step 3: Automatic navigation menu
 const BASE_PATH =
@@ -18,6 +12,7 @@ let pages = [
   { url: '#about', title: 'About' },
   { url: '#experience', title: 'Experience' },
   { url: '#skills', title: 'Skills' },
+  { url: 'projects/', title: 'Projects' },
   { url: '#contact', title: 'Contact' },
   { url: 'https://github.com/rvasappa-ucsd', title: 'GitHub' },
 ];
@@ -76,14 +71,12 @@ document.body.prepend(nav);
 
 // Step 4: Dark Mode Implementation
 
-// Step 4.4: Function to set color scheme
+// Function to set color scheme
 function setColorScheme(colorScheme) {
-  console.log('setColorScheme called with:', colorScheme);
-  
   // Set the color-scheme CSS property on the root element
   document.documentElement.style.colorScheme = colorScheme;
   
-  // Also add a data attribute for CSS targeting
+  // Add data attribute for CSS targeting
   if (colorScheme === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
   } else if (colorScheme === 'light') {
@@ -91,10 +84,6 @@ function setColorScheme(colorScheme) {
   } else {
     document.documentElement.removeAttribute('data-theme');
   }
-  
-  console.log('✓ Color scheme set to:', colorScheme);
-  console.log('✓ data-theme attribute:', document.documentElement.getAttribute('data-theme'));
-  console.log('✓ style.colorScheme:', document.documentElement.style.colorScheme);
 }
 
 // Step 4.2: Add dark mode switcher
@@ -115,12 +104,9 @@ document.body.insertAdjacentHTML(
 let select = document.getElementById('theme-select');
 
 if (select) {
-  console.log('✓ Theme select found!');
-  
-  // Step 4.5: Load saved preference on page load
+  // Load saved preference on page load
   if ('colorScheme' in localStorage) {
     let savedScheme = localStorage.colorScheme;
-    console.log('Loading saved scheme:', savedScheme);
     setColorScheme(savedScheme);
     select.value = savedScheme;
   } else {
@@ -128,33 +114,82 @@ if (select) {
     setColorScheme('light dark');
   }
 
-  // Step 4.4: Listen for changes
+  // Listen for theme changes
   select.addEventListener('change', function (event) {
-    console.log('Select changed to:', event.target.value);
     setColorScheme(event.target.value);
-    
-    // Step 4.5: Save preference to localStorage
+    // Save preference to localStorage
     localStorage.colorScheme = event.target.value;
   });
-  
-  console.log('✓ Event listener attached');
-} else {
-  console.error('✗ Theme select element NOT found!');
 }
 
-// Step 5: Better contact form (Optional)
-let form = document.querySelector('form');
+// ===== LAB 4: Modular JavaScript and API Integration =====
 
-form?.addEventListener('submit', function (event) {
-  event.preventDefault();
-  
-  let data = new FormData(form);
-  let params = [];
-  
-  for (let [name, value] of data) {
-    params.push(`${name}=${encodeURIComponent(value)}`);
+// Step 1.2: Function to fetch JSON data
+export async function fetchJSON(url) {
+  try {
+    // Fetch the JSON file from the given URL
+    const response = await fetch(url);
+    
+    // Check if the fetch was successful
+    if (!response.ok) {
+      throw new Error(`Failed to fetch projects: ${response.statusText}`);
+    }
+    
+    // Parse and return the JSON data
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching or parsing JSON data:', error);
+    throw error;
+  }
+}
+
+// Step 1.4: Function to render projects dynamically
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+  // Validate container element
+  if (!containerElement) {
+    console.error('Container element is null or undefined');
+    return;
   }
   
-  let url = form.action + '?' + params.join('&');
-  location.href = url;
-});
+  // Clear existing content
+  containerElement.innerHTML = '';
+  
+  // Handle empty projects array
+  if (!projects || projects.length === 0) {
+    containerElement.innerHTML = '<p class="no-projects">No projects to display at this time.</p>';
+    return;
+  }
+  
+  // Validate heading level
+  const validHeadings = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+  if (!validHeadings.includes(headingLevel.toLowerCase())) {
+    console.warn(`Invalid heading level: ${headingLevel}. Using h2 instead.`);
+    headingLevel = 'h2';
+  }
+  
+  // Loop through each project and create an article element
+  for (let project of projects) {
+    // Create article element
+    const article = document.createElement('article');
+    article.className = 'project-card';
+    
+    // Populate article with project data using template literals
+    article.innerHTML = `
+      <${headingLevel}>${project.title}</${headingLevel}>
+      <img src="${project.image}" alt="${project.title}">
+      <p class="project-description">${project.description}</p>
+      <p class="project-year"><strong>Year:</strong> ${project.year}</p>
+    `;
+    
+    // Append article to container
+    containerElement.appendChild(article);
+  }
+  
+  console.log(`✓ Rendered ${projects.length} projects`);
+}
+
+// Step 3.2: Function to fetch GitHub data
+export async function fetchGitHubData(username) {
+  return fetchJSON(`https://api.github.com/users/${username}`);
+}

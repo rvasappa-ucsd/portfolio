@@ -1,0 +1,86 @@
+[
+  {
+    "title": "NYC Taxi Data EDA",
+    "year": 2025,
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "232R Group Project - Exploratory Data Analysis on NYC Taxi dataset using Python and Jupyter Notebooks. Analyzed trip patterns, fare distributions, and spatial-temporal trends in NYC taxi operations.",
+    "github": "https://github.com/rvasappa-ucsd/nyc-taxi-eda"
+  },
+  {
+    "title": "NYC Taxi Plotly Dash Dashboard",
+    "year": 2025,
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Interactive visualization dashboard for NYC taxi data built with Plotly Dash and Python. Provides real-time insights and interactive charts for exploring taxi trip data patterns.",
+    "github": "https://github.com/rvasappa-ucsd/nyc_taxi_plotly_dash"
+  },
+  {
+    "title": "Personal Portfolio Website",
+    "year": 2025,
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Modern portfolio website built with HTML, CSS, and JavaScript. Features dark mode, dynamic project loading from JSON, GitHub API integration, and responsive design. Deployed on GitHub Pages.",
+    "github": "https://github.com/rvasappa-ucsd/portfolio"
+  },
+  {
+    "title": "Voice-to-Slide Generator",
+    "year": 2025,
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "AI-powered TypeScript application that converts voice input into presentation slides. Uses natural language processing to generate structured slide content from spoken presentations.",
+    "github": "https://github.com/rvasappa/voice-to-slide_generator"
+  },
+  {
+    "title": "Visual Memory Search",
+    "year": 2025,
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "JavaScript-based visual search application with memory functionality. Interactive tool for searching and remembering visual patterns and content.",
+    "github": "https://github.com/rvasappa/visual_memory_search"
+  },
+  {
+    "title": "Universal Knowledge Graph Builder",
+    "year": 2025,
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Buildathon project - TypeScript application for constructing universal knowledge graphs. Enables automated relationship mapping and knowledge base creation.",
+    "github": "https://github.com/rvasappa/buildathon_universal_knowledge-graph-builder"
+  },
+  {
+    "title": "EE Pulse Monitoring System",
+    "year": 2025,
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Buildathon project - TypeScript application for monitoring electrical engineering pulse signals and system health metrics in real-time.",
+    "github": "https://github.com/rvasappa/buildathon_ee_pulse"
+  },
+  {
+    "title": "Codebase Time Machine",
+    "year": 2025,
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "TypeScript tool for traversing and analyzing codebase history. Enables developers to visualize code evolution and track changes over time.",
+    "github": "https://github.com/rvasappa/codebase_time_machine"
+  },
+  {
+    "title": "Natural Language MongoDB Agent",
+    "year": 2025,
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "HTML/JavaScript application that enables natural language queries to MongoDB databases. Converts plain English questions into MongoDB queries using AI.",
+    "github": "https://github.com/rvasappa/nl-mongo-agent"
+  },
+  {
+    "title": "Stock Data Analysis",
+    "year": 2025,
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Jupyter Notebook project for comprehensive stock market data analysis. Includes trend analysis, pattern recognition, and predictive modeling for financial data.",
+    "github": "https://github.com/rvasappa/stock_data_analysis"
+  },
+  {
+    "title": "DSC207R Data Science Project",
+    "year": 2024,
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Graduate-level data science course project. Comprehensive analysis and machine learning implementations for advanced data science applications.",
+    "github": "https://github.com/rvasappa/dsc207r"
+  },
+  {
+    "title": "ipBundler - IP Release Manager",
+    "year": 2015,
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "IP Release Manager/Bundler for managing file and directory contents in semiconductor design. Python-based tool for organizing and bundling IP deliverables across multiple technology nodes.",
+    "github": "https://github.com/rvasappa/ipBundler"
+  }
+]
