@@ -15,6 +15,20 @@ Visit the live site at: [https://rvasappa-ucsd.github.io/portfolio/](https://rva
 - **Resume**: Comprehensive CV with education, experience, and skills
 - **Contact**: Professional contact form with URL encoding
 
+### Lab 1 Implementation (HTML Foundation)
+- ✅ **Multi-Page Structure**: Four main pages (Home, Projects, Resume, Contact)
+- ✅ **Semantic HTML5**: Proper document structure with `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`
+- ✅ **Form Design**: Contact form with input validation
+- ✅ **Basic Styling**: Foundation CSS with professional layout
+- ✅ **Git Repository**: Version control setup and GitHub hosting
+
+### Lab 2 Enhancements (Advanced CSS)
+- ✅ **Responsive Max-Width**: 100ch constraint for optimal readability
+- ✅ **Flexbox Navigation**: Modern, flexible menu layout
+- ✅ **CSS Grid Forms**: Organized field layout with proper spacing
+- ✅ **Typography Hierarchy**: Improved heading sizes and line-height
+- ✅ **Enhanced Visual Design**: Better spacing, alignment, and layout systems
+
 ### Lab 3 Enhancements (JavaScript Enhancement)
 - ✅ **Automatic Navigation Generation**: Dynamic menu from centralized data source
 - ✅ **External Link Handling**: Smart detection with `target="_blank"` for external links
