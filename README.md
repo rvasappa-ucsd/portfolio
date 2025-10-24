@@ -100,6 +100,8 @@ portfolio/
 ├── style.css               # Main stylesheet (1194 lines) with dark mode and grid layouts
 ├── global.js               # Shared JavaScript: navigation, theme switcher, reusable functions
 ├── index.js                # Homepage-specific: latest projects and GitHub stats
+├── .gitignore              # Git ignore configuration
+├── README.md               # This file - project documentation
 ├── lib/
 │   └── projects.json       # Centralized project data (12 projects)
 ├── projects/
@@ -109,12 +111,8 @@ portfolio/
 │   └── index.html          # Resume/CV page
 ├── contact/
 │   └── index.html          # Contact page with enhanced form
-├── images/
-│   └── README.md           # Image assets directory
-├── test-theme.html         # Theme switcher testing page
-├── README.md               # This file
-├── lab3.md                 # Lab 3 implementation documentation
-└── lab4.md                 # Lab 4 implementation documentation
+└── images/
+    └── README.md           # Image assets directory
 ```
 
 ## 🔧 Key Components
