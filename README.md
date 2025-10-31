@@ -50,7 +50,7 @@ Visit the live site at: [https://rvasappa-ucsd.github.io/portfolio/](https://rva
 - ✅ **Real-time Search**: Instant filtering across all project metadata
 - ✅ **Interactive Hover Effects**: Smooth opacity transitions on wedge hover
 - ✅ **Click to Filter**: Select year wedges to filter project list
-- ✅ **Dual Filtering System**: Combine search and year filters simultaneously (Extra Credit!)
+- ✅ **Dual Filtering System**: Combine search and year filters simultaneously
 - ✅ **Responsive Visualization**: Pie chart and legend adapt to screen size
 - ✅ **Accessible Design**: ARIA labels, keyboard navigation, semantic HTML
 - ✅ **State Management**: Coordinated filtering between visualization and project list
@@ -233,7 +233,7 @@ portfolio/
 - **Real-time Search**: Instant filtering with reactive visualization updates
 - **Hover Effects**: CSS `:has()` selector for smooth wedge highlighting
 - **Click Interactions**: Select year wedges to filter project list
-- **Dual Filtering**: Search and year filters work simultaneously (Extra Credit!)
+- **Dual Filtering**: Search and year filters work simultaneously
 - **State Management**: Coordinated `selectedIndex` and `query` state
 - **Responsive Design**: Flexbox layout adapts from desktop to mobile
 - **Accessibility**: ARIA labels, keyboard navigation, semantic structure
@@ -261,14 +261,14 @@ The projects page now features an interactive data visualization built with D3.j
 - **Real-time Search**: `input` event for instant filtering
 - **Case-insensitive**: Searches across all project fields
 - **Reactive Updates**: Pie chart regenerates with filtered data
-- **Dual Filtering**: 🌟 **Extra Credit** - Search AND year filters work together!
+- **Dual Filtering**: Search AND year filters work together!
 
 **Technical Implementation**
 ```javascript
 // Data transformation pipeline
 projects → d3.rollups() → pie data → d3.pie() → arc data → d3.arc() → SVG paths
 
-// Dual filtering (Extra Credit feature)
+// Dual filtering feature
 projects → filter by year → filter by search → render
 ```
 
@@ -277,7 +277,7 @@ projects → filter by year → filter by search → render
 - `selectedIndex`: Selected year (-1 = none)
 - Coordinated updates between visualization and project list
 
-### The "Pitfall" Fix (Extra Credit)
+### The "Pitfall" Fix
 **Problem**: Search and year filters don't work together
 **Solution**: Apply filters sequentially - year first, then search
 **Lines**: 54-62 in `projects.js`
@@ -300,29 +300,7 @@ projects → filter by year → filter by search → render
 
 ## 📖 Documentation
 
-Comprehensive documentation for Lab 5 is available in the parent directory's `docs/` folder:
 
-- **[../docs/README.md](../docs/README.md)** - Documentation index and navigation guide
-- **[../docs/LAB5_README.md](../docs/LAB5_README.md)** - Complete Lab 5 overview
-- **[../docs/LAB5_IMPLEMENTATION.md](../docs/LAB5_IMPLEMENTATION.md)** - Detailed implementation guide
-- **[../docs/LAB5_PITFALL_EXPLAINED.md](../docs/LAB5_PITFALL_EXPLAINED.md)** - Extra credit bug fix explanation
-- **[../docs/LAB5_VIDEO_SCRIPT.md](../docs/LAB5_VIDEO_SCRIPT.md)** - Video submission script
-- **[../docs/LAB5_TROUBLESHOOTING.md](../docs/LAB5_TROUBLESHOOTING.md)** - Common issues and solutions
-- **[../docs/LAB5_VISUAL_GUIDE.md](../docs/LAB5_VISUAL_GUIDE.md)** - Visual layout reference
-- **[../docs/LAB5_QUICK_REFERENCE.md](../docs/LAB5_QUICK_REFERENCE.md)** - Quick reference card
-- **[../docs/LAB5_SUMMARY.md](../docs/LAB5_SUMMARY.md)** - Checklist and summary
-
-Total: **8 comprehensive guides** covering all aspects of the D3.js implementation.
-
-## 🎯 Quick Start for Lab 5
-
-1. **View the visualization**: Open `projects/index.html` in your browser
-2. **Test interactions**: Hover, click wedges, search, and combine filters
-3. **Understand the code**: Read `../docs/LAB5_README.md` for overview
-4. **Record video**: Follow `../docs/LAB5_VIDEO_SCRIPT.md` for 60-second script
-5. **Submit**: Use `../docs/LAB5_SUMMARY.md` checklist
-
-## �📝 License
 
 © 2025 Raghav Vasappanavara. All rights reserved.
 
