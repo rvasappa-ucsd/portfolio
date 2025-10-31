@@ -44,17 +44,31 @@ Visit the live site at: [https://rvasappa-ucsd.github.io/portfolio/](https://rva
 - ✅ **Responsive Grid Layout**: 4-column layout with responsive breakpoints
 - ✅ **Latest Projects Display**: Featured projects on homepage
 
+### Lab 5 Enhancements (D3 Data Visualizations)
+- ✅ **D3.js Pie Chart**: Interactive SVG visualization of projects by year
+- ✅ **Dynamic Legend**: Color-coded legend with project counts per year
+- ✅ **Real-time Search**: Instant filtering across all project metadata
+- ✅ **Interactive Hover Effects**: Smooth opacity transitions on wedge hover
+- ✅ **Click to Filter**: Select year wedges to filter project list
+- ✅ **Dual Filtering System**: Combine search and year filters simultaneously (Extra Credit!)
+- ✅ **Responsive Visualization**: Pie chart and legend adapt to screen size
+- ✅ **Accessible Design**: ARIA labels, keyboard navigation, semantic HTML
+- ✅ **State Management**: Coordinated filtering between visualization and project list
+- ✅ **Dark Mode Support**: Full theming for all D3 components
+
 ## 🛠️ Technologies Used
 
 ### Frontend
 - **HTML5**: Semantic markup with modern structure
-- **CSS3**: Custom properties, Grid, Flexbox, responsive design
+- **CSS3**: Custom properties, Grid, Flexbox, responsive design, transitions
 - **JavaScript (ES6+)**: Modules, async/await, Fetch API, DOM manipulation
+- **D3.js v7.9.0**: Data-driven SVG visualizations, interactive charts
 
 ### APIs & Data
 - **GitHub REST API**: Real-time profile statistics
 - **JSON**: Structured project data storage
 - **LocalStorage API**: Theme preference persistence
+- **D3 Data Transformations**: Rollups, pie generators, arc generators
 
 ### Tools & Hosting
 - **Git & GitHub**: Version control and collaboration
@@ -111,7 +125,7 @@ The site automatically deploys to GitHub Pages when you push to the `main` branc
 ```
 portfolio/
 ├── index.html              # Home page with hero, skills, latest projects, GitHub stats
-├── style.css               # Main stylesheet (1194 lines) with dark mode and grid layouts
+├── style.css               # Main stylesheet (1340+ lines) with dark mode and D3 styles
 ├── global.js               # Shared JavaScript: navigation, theme switcher, reusable functions
 ├── index.js                # Homepage-specific: latest projects and GitHub stats
 ├── .gitignore              # Git ignore configuration
@@ -119,8 +133,8 @@ portfolio/
 ├── lib/
 │   └── projects.json       # Centralized project data (12 projects)
 ├── projects/
-│   ├── index.html          # Projects page with dynamic loading
-│   └── projects.js         # Projects page logic
+│   ├── index.html          # Projects page with D3 visualizations
+│   └── projects.js         # D3 pie chart, search, filtering logic
 ├── resume/
 │   └── index.html          # Resume/CV page
 ├── contact/
@@ -135,7 +149,7 @@ portfolio/
 
 **global.js** - Shared functionality (196 lines)
 - `fetchJSON(url)` - Fetch and parse JSON data
-- `renderProjects(projects, container, headingLevel)` - Dynamic project card generation
+- `renderProjects(projects, container, headingLevel)` - Dynamic project card generation with year display
 - `fetchGitHubData(username)` - GitHub API integration
 - Navigation generation
 - Dark mode theme switcher
@@ -146,10 +160,14 @@ portfolio/
 - Display GitHub profile statistics
 - Dynamic content population
 
-**projects/projects.js** - Projects page logic (18 lines)
-- Fetch all projects from JSON
-- Render project grid
-- Update project count
+**projects/projects.js** - Projects page logic (100+ lines)
+- D3.js pie chart visualization
+- Interactive legend with colored swatches
+- Real-time search functionality
+- Dual filtering (search + year selection)
+- State management (query, selectedIndex)
+- Event handling for hover, click, and search
+- Reactive data visualization updates
 
 ### Data Structure
 
@@ -168,22 +186,28 @@ portfolio/
 
 ### CSS Architecture
 
-**style.css** - Comprehensive styling
+**style.css** - Comprehensive styling (1340+ lines)
 - CSS Variables for theming
 - Responsive grid layouts (4/3/2/1 columns)
 - Dark mode with `[data-theme="dark"]` selectors
-- Flexbox for card alignment
+- Flexbox for card alignment and pie chart layout
 - Media queries for breakpoints
-- Smooth transitions and hover effects
+- Smooth transitions and hover effects (300ms)
+- D3 visualization styles (pie chart, legend, search bar)
+- Interactive state styling (hover, selected, focus)
+- SVG path styling with `:has()` pseudo-class
 
-## � Project Statistics
+## 📊 Project Statistics
 
 - **Total Projects**: 12 public GitHub repositories
-- **JavaScript Files**: 3 modular files
-- **Total Code**: ~440 JavaScript lines, 1194 CSS lines
-- **API Integration**: GitHub REST API
+- **JavaScript Files**: 3 modular files (ES6 modules)
+- **Total Code**: ~540 JavaScript lines, 1340+ CSS lines
+- **API Integration**: GitHub REST API + D3.js v7.9.0
+- **Visualizations**: 1 interactive D3 pie chart with legend
+- **Data Transformations**: d3.rollups, d3.pie, d3.arc generators
 - **Responsive Breakpoints**: 4 layouts (mobile to desktop)
 - **Theme Options**: 3 (Automatic, Light, Dark)
+- **Interactive Features**: Search, filter, hover effects, click interactions
 
 ## 🎓 Lab Implementations
 
@@ -202,12 +226,71 @@ portfolio/
 - Responsive 4-column grid layout
 - **Documentation**: See `lab4.md`
 
+### Lab 5: D3 Data Visualizations ⭐ NEW
+- **Interactive Pie Chart**: D3.js visualization of projects by year using SVG paths
+- **Data Aggregation**: `d3.rollups()` to group and count projects
+- **Dynamic Legend**: Auto-generated color-coded legend with swatches
+- **Real-time Search**: Instant filtering with reactive visualization updates
+- **Hover Effects**: CSS `:has()` selector for smooth wedge highlighting
+- **Click Interactions**: Select year wedges to filter project list
+- **Dual Filtering**: Search and year filters work simultaneously (Extra Credit!)
+- **State Management**: Coordinated `selectedIndex` and `query` state
+- **Responsive Design**: Flexbox layout adapts from desktop to mobile
+- **Accessibility**: ARIA labels, keyboard navigation, semantic structure
+- **Performance**: 300ms smooth transitions, efficient DOM updates
+- **Documentation**: See `docs/LAB5_*.md` files for comprehensive guides
+
+## 🎯 Lab 5 Key Features
+
+### D3.js Pie Chart Visualization
+The projects page now features an interactive data visualization built with D3.js:
+
+**Core Visualization**
+- **SVG Pie Chart**: Projects grouped by year using `d3.rollups()`
+- **Arc Generation**: `d3.arc()` with 50px radius, centered at origin
+- **Slice Generation**: `d3.pie()` calculates angles from project counts
+- **Color Scheme**: Tableau10 ordinal scale for accessibility
+
+**Interactive Features**
+- **Hover Effects**: CSS `:has()` selector fades non-hovered wedges to 50% opacity
+- **Click to Select**: Wedges change color (dark olive) and filter projects
+- **Legend Interaction**: Legend items clickable, mirror pie slice behavior
+- **Smooth Transitions**: 300ms animations on all state changes
+
+**Search & Filtering**
+- **Real-time Search**: `input` event for instant filtering
+- **Case-insensitive**: Searches across all project fields
+- **Reactive Updates**: Pie chart regenerates with filtered data
+- **Dual Filtering**: 🌟 **Extra Credit** - Search AND year filters work together!
+
+**Technical Implementation**
+```javascript
+// Data transformation pipeline
+projects → d3.rollups() → pie data → d3.pie() → arc data → d3.arc() → SVG paths
+
+// Dual filtering (Extra Credit feature)
+projects → filter by year → filter by search → render
+```
+
+**State Management**
+- `query`: Current search text
+- `selectedIndex`: Selected year (-1 = none)
+- Coordinated updates between visualization and project list
+
+### The "Pitfall" Fix (Extra Credit)
+**Problem**: Search and year filters don't work together
+**Solution**: Apply filters sequentially - year first, then search
+**Lines**: 54-62 in `projects.js`
+**Result**: Both filters compose correctly in any order! 🎉
+
 ## 🔗 Links
 
 - **Live Site**: [https://rvasappa-ucsd.github.io/portfolio/](https://rvasappa-ucsd.github.io/portfolio/)
+- **Projects Visualization**: [https://rvasappa-ucsd.github.io/portfolio/projects/](https://rvasappa-ucsd.github.io/portfolio/projects/)
 - **GitHub Repository**: [https://github.com/rvasappa-ucsd/portfolio](https://github.com/rvasappa-ucsd/portfolio)
 - **GitHub Profile**: [https://github.com/rvasappa-ucsd](https://github.com/rvasappa-ucsd)
 - **Secondary GitHub**: [https://github.com/rvasappa](https://github.com/rvasappa)
+- **Lab 5 Documentation**: [../docs/LAB5_README.md](../docs/LAB5_README.md)
 
 ## �📧 Contact
 
@@ -215,10 +298,34 @@ portfolio/
 - **LinkedIn**: [linkedin.com/in/rvasappa](https://linkedin.com/in/rvasappa)
 - **GitHub**: [github.com/rvasappa-ucsd](https://github.com/rvasappa-ucsd)
 
-## 📝 License
+## 📖 Documentation
+
+Comprehensive documentation for Lab 5 is available in the parent directory's `docs/` folder:
+
+- **[../docs/README.md](../docs/README.md)** - Documentation index and navigation guide
+- **[../docs/LAB5_README.md](../docs/LAB5_README.md)** - Complete Lab 5 overview
+- **[../docs/LAB5_IMPLEMENTATION.md](../docs/LAB5_IMPLEMENTATION.md)** - Detailed implementation guide
+- **[../docs/LAB5_PITFALL_EXPLAINED.md](../docs/LAB5_PITFALL_EXPLAINED.md)** - Extra credit bug fix explanation
+- **[../docs/LAB5_VIDEO_SCRIPT.md](../docs/LAB5_VIDEO_SCRIPT.md)** - Video submission script
+- **[../docs/LAB5_TROUBLESHOOTING.md](../docs/LAB5_TROUBLESHOOTING.md)** - Common issues and solutions
+- **[../docs/LAB5_VISUAL_GUIDE.md](../docs/LAB5_VISUAL_GUIDE.md)** - Visual layout reference
+- **[../docs/LAB5_QUICK_REFERENCE.md](../docs/LAB5_QUICK_REFERENCE.md)** - Quick reference card
+- **[../docs/LAB5_SUMMARY.md](../docs/LAB5_SUMMARY.md)** - Checklist and summary
+
+Total: **8 comprehensive guides** covering all aspects of the D3.js implementation.
+
+## 🎯 Quick Start for Lab 5
+
+1. **View the visualization**: Open `projects/index.html` in your browser
+2. **Test interactions**: Hover, click wedges, search, and combine filters
+3. **Understand the code**: Read `../docs/LAB5_README.md` for overview
+4. **Record video**: Follow `../docs/LAB5_VIDEO_SCRIPT.md` for 60-second script
+5. **Submit**: Use `../docs/LAB5_SUMMARY.md` checklist
+
+## �📝 License
 
 © 2025 Raghav Vasappanavara. All rights reserved.
 
 ---
 
-**Built with ❤️ using modern web technologies**
+**Built with ❤️ using modern web technologies: HTML5, CSS3, JavaScript ES6+, D3.js v7.9.0**

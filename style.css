@@ -1196,3 +1196,202 @@ html[data-theme="dark"] #profile-stats dd {
         grid-row: 4;
     }
 }
+
+/* ===== LAB 5: D3 Pie Chart and Visualization Styles ===== */
+
+/* Search Bar */
+.searchBar {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    display: block;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.searchBar:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.searchBar::placeholder {
+    color: #999;
+}
+
+/* Pie Chart Container */
+.pie-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+}
+
+/* SVG Pie Chart */
+#projects-pie-plot {
+    max-width: 20em;
+    margin-block: 0;
+    overflow: visible;
+    flex-shrink: 0;
+}
+
+/* Path (Pie Wedge) Styles */
+#projects-pie-plot path {
+    cursor: pointer;
+    transition: opacity 300ms, fill 300ms, transform 300ms;
+    stroke: white;
+    stroke-width: 2;
+}
+
+/* Hover effect: fade other wedges */
+#projects-pie-plot:has(path:hover) path:not(:hover) {
+    opacity: 0.5;
+}
+
+/* Selected wedge style */
+#projects-pie-plot path.selected {
+    fill: oklch(60% 45% 0) !important;
+    transform: scale(1.05);
+    transform-origin: center;
+}
+
+/* Legend Styles */
+.legend {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+    gap: 1rem;
+    flex: 1;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.5rem;
+    background: #f8f9fa;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.legend-item:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.legend-item.selected {
+    --color: oklch(60% 45% 0) !important;
+    background: rgba(102, 126, 234, 0.15);
+    font-weight: 600;
+}
+
+.legend-item.selected .swatch {
+    background: var(--color);
+}
+
+/* Swatch (color square in legend) */
+.swatch {
+    width: 1.2em;
+    height: 1.2em;
+    background: var(--color);
+    border-radius: 3px;
+    display: inline-block;
+    flex-shrink: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.legend-item em {
+    color: #666;
+    font-style: normal;
+    font-size: 0.9em;
+}
+
+/* Project Info Wrapper */
+.project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Project Year Styling */
+.project-card .project-year {
+    font-family: Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman', serif;
+    font-variant-numeric: oldstyle-nums;
+    color: #888;
+    font-size: 0.9rem;
+    margin: 0;
+    padding: 0;
+}
+
+/* Dark Mode Styles for Lab 5 Components */
+html[data-theme="dark"] .searchBar {
+    background: #161b22;
+    border-color: #30363d;
+    color: #c9d1d9;
+}
+
+html[data-theme="dark"] .searchBar:focus {
+    border-color: #58a6ff;
+    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.1);
+}
+
+html[data-theme="dark"] .searchBar::placeholder {
+    color: #6e7681;
+}
+
+html[data-theme="dark"] .pie-container {
+    background: #161b22;
+    border: 1px solid #30363d;
+}
+
+html[data-theme="dark"] .legend {
+    background: #0d1117;
+    border-color: #30363d;
+}
+
+html[data-theme="dark"] .legend-item:hover {
+    background: rgba(88, 166, 255, 0.1);
+}
+
+html[data-theme="dark"] .legend-item.selected {
+    background: rgba(88, 166, 255, 0.15);
+}
+
+html[data-theme="dark"] .legend-item em {
+    color: #8b949e;
+}
+
+html[data-theme="dark"] #projects-pie-plot path {
+    stroke: #0d1117;
+}
+
+/* Responsive Layout for Pie Chart */
+@media (max-width: 768px) {
+    .pie-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    #projects-pie-plot {
+        max-width: 15em;
+    }
+    
+    .legend {
+        grid-template-columns: repeat(auto-fill, minmax(7em, 1fr));
+    }
+}
